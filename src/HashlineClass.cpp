@@ -1,16 +1,10 @@
 #include "../include/HashlineClass.hpp"
 
-struct HashLine
-{
-  unsigned int key;
-  data_t data;
-};
+//initialisation of method for Hash_cl
 
-class Hash
+void Hash_cl::resize (size_t new_size) {size_ = new_size;}
+size_t Hash_cl::get_size(void) const {return size_;}
+auto Hash_cl::find(int key)
 {
-  private:
-  HashLine* Hash; 
-  
-  public:
-  //method that operate with Hash 
-};
+  return hash_.find(key);
+}

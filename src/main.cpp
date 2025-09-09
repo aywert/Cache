@@ -9,11 +9,13 @@ int main(void)
   using std::cin;
   using std::cout;
 
-  unsigned long cache_size;
-  unsigned long N_elem;
+  size_t cache_size;
+  size_t N_elem;
   
   cin >> cache_size >> N_elem;
   cout << "cache_size: " << cache_size << "\n" << "Num_of_elem: "<< N_elem << "\n";
+
+  class Hash_cl Hash_obj = Hash_cl(cache_size, N_elem); 
 
   std::unordered_map<data_t, int> HashTable;
 
@@ -21,10 +23,10 @@ int main(void)
   for (size_t i = 0; i < N_elem; i++)
   {
     cin >> buf;
-    auto it = HashTable.find(buf);
+    auto it = Hash_obj.find(buf);
 
-    if (HashTable.size() < cache_size)
-        HashTable.insert({buf, buf});
+    if (Hash_obj.get_size() < cache_size)
+      HashTable.insert({buf, buf});
     else
     {
       if (it != HashTable.end())
