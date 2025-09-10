@@ -1,6 +1,7 @@
 #ifndef HASH_CLASS
 #define HASH_CLASS
 
+#include <iostream>
 #include <unordered_map>
 #include <list>
 
@@ -12,6 +13,7 @@ class Hash_cl
   private:
   size_t size_; 
   size_t n_sells_;
+  size_t n_hits_;
 
   std::list<int> cache_;                  // Cachelines
   std::unordered_map<int, int> hash_;
@@ -24,8 +26,11 @@ class Hash_cl
   ~Hash_cl() {};                        //default destructor
   
   void resize(size_t new_size);
-  auto Hash_cl::find(int key);
-  size_t Hash_cl::get_size(void) const ;
+  auto find(int key);
+  size_t get_size(void) const ;
+  bool is_full(void) {return size_ == hash_.size() ? true : false;}
+  bool check_hash(int key);
+
 };
 
 

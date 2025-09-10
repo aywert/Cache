@@ -17,28 +17,13 @@ int main(void)
 
   class Hash_cl Hash_obj = Hash_cl(cache_size, N_elem); 
 
-  std::unordered_map<data_t, int> HashTable;
-
-  data_t buf;
+  int buf;
   for (size_t i = 0; i < N_elem; i++)
   {
     cin >> buf;
-    auto it = Hash_obj.find(buf);
-
-    if (Hash_obj.get_size() < cache_size)
-      HashTable.insert({buf, buf});
-    else
+    if (Hash_obj.check_hash(buf))
     {
-      if (it != HashTable.end())
-      {
-        cout << "Cache hit: " << buf << "\n";
-      }
-      else 
-      {
-        auto it = HashTable.begin();
-        HashTable.erase(it->first);
-        HashTable.insert({buf, buf});
-      }
+      cout << "Cache hit: " << buf << "\n";
     }
   }
 
