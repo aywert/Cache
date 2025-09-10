@@ -27,5 +27,7 @@ int main(void)
     }
   }
 
+  std::cout << "Number of hits = " << Hash_obj.get_hits() << "\n";
+
   return 0;
 }

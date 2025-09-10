@@ -7,6 +7,11 @@
 
 typedef int data_t; // using data_t = int;
 
+struct CacheLine
+{
+  int key;
+  int data;
+};
 
 class Hash_cl
 {
@@ -15,13 +20,17 @@ class Hash_cl
   size_t n_sells_;
   size_t n_hits_;
 
-  std::list<int> cache_;                  // Cachelines
+  std::list<CacheLine> cache_;                  // Cachelines
   std::unordered_map<int, int> hash_;
 
+  using LstIt = typename std::list<CacheLine>::iterator;
+  std::unordered_map<int, LstIt> hash_ls; // using hashtable for saving iterators isterad of numbers itself 
+  
+  
   public:
-  Hash_cl() {size_ = 0; n_sells_ = 0;}; //default constructor
-  Hash_cl(size_t size, size_t num_sells)  //explicit constructor
-  {size_ = size; n_sells_ = num_sells;}; 
+  Hash_cl() {size_ = 0; n_sells_ = 0; n_hits_ = 0;};        //default constructor
+  Hash_cl(size_t size, size_t num_sells, size_t hits = 0)  //explicit constructor
+  {size_ = size; n_sells_ = num_sells; n_hits_ = hits;}; 
 
   ~Hash_cl() {};                        //default destructor
   
@@ -30,6 +39,7 @@ class Hash_cl
   size_t get_size(void) const ;
   bool is_full(void) {return size_ == hash_.size() ? true : false;}
   bool check_hash(int key);
+  size_t get_hits(void) const;
 
 };
 

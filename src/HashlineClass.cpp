@@ -4,6 +4,8 @@
 
 void Hash_cl::resize (size_t new_size) {size_ = new_size;}
 size_t Hash_cl::get_size(void) const {return size_;}
+size_t Hash_cl::get_hits(void) const {return n_hits_;}
+
 auto Hash_cl::find(int key)
 {
   return hash_.find(key);
@@ -11,23 +13,23 @@ auto Hash_cl::find(int key)
 
 bool Hash_cl::check_hash(int key)
 {
-  
-  auto it = hash_.find(key);
+  auto it = hash_ls.find(key);
 
-  if (it != hash_.end()) {
+  if (it != hash_ls.end()) {
     n_hits_++;
     return true;
-  }
+  } 
 
   if (!this->is_full()) {
-    //std::cout << "i have been here\n";
-    hash_.insert({key, key});
+    cache_.push_front(CacheLine{key, key});
+    hash_ls.insert({key, cache_.begin()});
   }
 
   else {
-    auto it = hash_.begin();
-    hash_.erase(it->first);
-    hash_.insert({key, key});
+    hash_ls.erase(cache_.back().key);         //deleting itearator with that key from Hashtable
+    cache_.pop_back();                        //deleting last element of cache_
+    cache_.push_front(CacheLine{key, key});
+    hash_ls.insert({key, cache_.begin()});
   }
 
   return false;
