@@ -30,9 +30,9 @@ class Hash_cl
   
   
   public:
-  Hash_cl() {size_ = 0; n_sells_ = 0; n_hits_ = 0; is_ideal = 1;};        //default constructor
-  Hash_cl(size_t size, size_t num_sells, size_t hits = 0)  //explicit constructor
-  {size_ = size; n_sells_ = num_sells; n_hits_ = hits; is_ideal = 0;}; 
+  Hash_cl() : size_(0), n_sells_(0), n_hits_(0), is_ideal(1) {};        //default constructor
+  Hash_cl(size_t size, size_t num_sells, size_t hits = 0) : //explicit constructor
+  size_(size), n_sells_(num_sells), n_hits_(hits), is_ideal(0) {}; 
 
   ~Hash_cl() {};                        //default destructor
   

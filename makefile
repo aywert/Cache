@@ -1,4 +1,4 @@
-.PHONY : Release r_run Debag d_run
+.PHONY : Release r_run Debug d_run
 
 Release:
 	cmake -S ./ -B build/Release -DCMAKE_BUILD_TYPE=Release
@@ -6,9 +6,9 @@ Release:
 r_run:
 	./build/Release/MyHash
 
-Debag:
-	cmake -S ./ -B build/Debag -DCMAKE_BUILD_TYPE=Debag
-	cmake --build build/Debag
+Debug:
+	cmake -S ./ -B build/Debug -DCMAKE_BUILD_TYPE=Debug
+	cmake --build build/Debug
 d_run:
-	./build/Debag/MyHash
+	./build/Debug/MyHash
 
