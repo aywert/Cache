@@ -21,7 +21,7 @@ class Hash_cl
   size_t n_hits_;
 
   std::list<CacheLine> cache_;                  // Cachelines
-  std::unordered_map<int, int> hash_;
+  //std::unordered_map<int, int> hash_;
 
   using LstIt = typename std::list<CacheLine>::iterator;
   std::unordered_map<int, LstIt> hash_ls; // using hashtable for saving iterators isterad of numbers itself 
@@ -37,7 +37,7 @@ class Hash_cl
   void resize(size_t new_size);
   auto find(int key);
   size_t get_size(void) const ;
-  bool is_full(void) {return size_ == hash_.size() ? true : false;}
+  bool is_full(void) {return size_ == hash_ls.size() ? true : false;}
   bool check_hash(int key);
   size_t get_hits(void) const;
 

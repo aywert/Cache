@@ -8,7 +8,7 @@ size_t Hash_cl::get_hits(void) const {return n_hits_;}
 
 auto Hash_cl::find(int key)
 {
-  return hash_.find(key);
+  return hash_ls.find(key);
 }
 
 bool Hash_cl::check_hash(int key)
