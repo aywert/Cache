@@ -1,22 +1,14 @@
-.PHONY : all run clean 
+.PHONY : Release r_run Debag d_run
 
-CXX = g++
-CXXFLAGS = -Wall -Wextra
+Release:
+	cmake -S ./ -B build/Release -DCMAKE_BUILD_TYPE=Release
+	cmake --build build/Release
+r_run:
+	./build/Release/MyHash
 
-NAMEEXE := main
-OBJFILES := build/main.o build/HashlineClass.o
+Debag:
+	cmake -S ./ -B build/Debag -DCMAKE_BUILD_TYPE=Debag
+	cmake --build build/Debag
+d_run:
+	./build/Debag/MyHash
 
-all: $(NAMEEXE)
-
-run: $(NAMEEXE)
-	./$(NAMEEXE)
-
-$(NAMEEXE) : $(OBJFILES)
-	$(CXX) $(OBJFILES) -o $@  $(LFLAGS) 
-
-build/%.o : src/%.cpp
-	@mkdir -p build
-	$(CXX) $< -c -o $@ $(CXXFLAGS)
-
-clean: 
-	rm -f $(NAMEEXE) build/*.o

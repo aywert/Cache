@@ -16,18 +16,17 @@ int main(void)
   //cout << "cache_size: " << cache_size << "\n" << "Num_of_elem: "<< N_elem << "\n";
 
   class Hash_cl Hash_obj = Hash_cl(cache_size, N_elem); 
+  class Hash_cl Idial_Hash = Hash_cl(); 
 
   int buf;
   for (size_t i = 0; i < N_elem; i++)
   {
     cin >> buf;
-    if (Hash_obj.check_hash(buf))
-    {
-      //cout << "Cache hit: " << buf << "\n";
-    }
+    Hash_obj.check_hash(buf);
+    Idial_Hash.check_hash(buf);
   }
 
-  //std::cout << "Number of hits = " << Hash_obj.get_hits() << "\n";
-  std::cout << Hash_obj.get_hits() << "\n";
+  std::cout << "My Cache: " << Hash_obj.get_hits() << "\n";
+  std::cout << "Ideal cache: " << Idial_Hash.get_hits() << "\n";
   return 0;
 }

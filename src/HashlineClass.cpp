@@ -20,7 +20,7 @@ bool Hash_cl::check_hash(int key)
     return true;
   } 
 
-  if (!this->is_full()) {
+  if (is_ideal || !this->is_full()) {
     cache_.push_front(CacheLine{key, key});
     hash_ls.insert({key, cache_.begin()});
   }
@@ -34,22 +34,3 @@ bool Hash_cl::check_hash(int key)
 
   return false;
 }
-// std::unordered_map<data_t, int> HashTable;
-
-// auto it = HashTable.find(buf);
-
-    // if (HashTable.size() < cache_size)
-    //   HashTable.insert({buf, buf});
-    // else
-    // {
-    //   if (it != HashTable.end())
-    //   {
-    //     cout << "Cache hit: " << buf << "\n";
-    //   }
-    //   else 
-    //   {
-    //     auto it = HashTable.begin();
-    //     HashTable.erase(it->first);
-    //     HashTable.insert({buf, buf});
-    //   }
-    //}
