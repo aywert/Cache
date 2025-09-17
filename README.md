@@ -2,7 +2,7 @@
 In order to download, compile and run the programm:
 ```
 git clone https://github.com/aywert/Hash
-cd Hash
+cd Cache
 make Release
 make r_run
 ```
