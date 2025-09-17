@@ -1,11 +1,18 @@
 #include <iostream>
 #include <unordered_map>
-#include "../include/HashlineClass.hpp" // data_t
-
-//typedef int data_t; 
+#include "../include/HashlineClass.hpp"
+#include "../include/tests.hpp" //run_tests
 
 int main(void)
 {
+
+  #ifdef DEBUG
+    std::cout << "DEBUG tests initialized.\n";
+    if (run_tests())
+      std::cout << "Tests completed\n";
+    return 0;
+  #endif
+
   using std::cin;
   using std::cout;
 

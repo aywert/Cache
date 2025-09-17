@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set (DEBUG_FLAGS   -std=c++20 -ggdb3 -fsanitize=address,alignment -Wall -Wextra -Weffc++ 
+set (DEBUG_FLAGS  -DDEBUG -std=c++20 -ggdb3 -fsanitize=address,alignment -Wall -Wextra -Weffc++ 
     -Wc++14-compat -Wmissing-declarations -Wcast-align -Wcast-qual -Wchar-subscripts 
     -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wno-format-nonliteral 
     -Wformat-security -Wformat=2 -Winline -Wnon-virtual-dtor -Woverloaded-virtual -Wpacked 
@@ -20,7 +20,7 @@ set (DEBUG_FLAGS   -std=c++20 -ggdb3 -fsanitize=address,alignment -Wall -Wextra 
 set (RELEASE_FLAGS -std=c++20 )
 
 find_program(IWYU_PATH NAMES include-what-you-use iwyu)
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/tests/*.cpp")
 file(GLOB HEADERS "include/*.hpp" "include/*.h")
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})

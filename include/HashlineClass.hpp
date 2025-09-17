@@ -30,11 +30,22 @@ class Hash_cl
   
   
   public:
-  Hash_cl() : size_(0), n_sells_(0), n_hits_(0), is_ideal(1) {};        //default constructor
+  Hash_cl() : size_(0),               //default constructor
+              n_sells_(0), 
+              n_hits_(0), 
+              is_ideal(true),
+              cache_(),
+              hash_ls() {};        
+              
   Hash_cl(size_t size, size_t num_sells, size_t hits = 0) : //explicit constructor
-  size_(size), n_sells_(num_sells), n_hits_(hits), is_ideal(0) {}; 
+              size_(size), 
+              n_sells_(num_sells), 
+              n_hits_(hits), 
+              is_ideal(false),
+              cache_(),
+              hash_ls() {}; 
 
-  ~Hash_cl() {};                        //default destructor
+  ~Hash_cl() {};                     //default destructor
   
   void resize(size_t new_size);
   auto find(int key);
