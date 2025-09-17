@@ -1,6 +1,6 @@
 #include <iostream>
 #include <unordered_map>
-#include "../include/HashlineClass.hpp"
+#include "../include/CacheClass.hpp"
 #include "../include/tests.hpp" //run_tests
 
 int main(void)

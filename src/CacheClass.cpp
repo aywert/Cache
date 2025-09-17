@@ -1,4 +1,4 @@
-#include "../include/HashlineClass.hpp"
+#include "../include/CacheClass.hpp"
 
 //initialisation of method for Hash_cl
 

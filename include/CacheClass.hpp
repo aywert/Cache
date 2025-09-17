@@ -22,9 +22,8 @@ class Hash_cl
 
   bool is_ideal; //defines should it work like idial one or not
 
-  std::list<CacheLine> cache_;                  // Cachelines
-  //std::unordered_map<int, int> hash_;
-
+  std::list<CacheLine> cache_;      
+  
   using LstIt = typename std::list<CacheLine>::iterator;
   std::unordered_map<int, LstIt> hash_ls; // using hashtable for saving iterators isterad of numbers itself 
   

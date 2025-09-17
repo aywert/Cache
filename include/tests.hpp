@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "../include/HashlineClass.hpp"
+#include "../include/CacheClass.hpp"
 bool run_tests(void);
 
 #endif
