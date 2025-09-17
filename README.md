@@ -1,7 +1,7 @@
 # Cache
 In order to download, compile and run the programm:
 ```
-git clone https://github.com/aywert/Hash
+git clone https://github.com/aywert/Cache
 cd Cache
 make Release
 make r_run
