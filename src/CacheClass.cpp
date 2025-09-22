@@ -16,6 +16,12 @@ bool Hash_cl::check_hash(int key)
   auto it = hash_ls.find(key);
 
   if (it != hash_ls.end()) {
+    
+    cache_.erase(it->second);
+    hash_ls.erase(key);
+    cache_.push_front(CacheLine{key, key});
+    hash_ls.insert({key, cache_.begin()});
+    
     n_hits_++;
     return true;
   } 
