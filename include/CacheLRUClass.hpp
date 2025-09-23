@@ -13,7 +13,7 @@ struct CacheLine
   int data;
 };
 
-class Hash_cl
+class Cache_LRU
 {
   private:
   size_t size_; 
@@ -29,14 +29,14 @@ class Hash_cl
   
   
   public:
-  Hash_cl() : size_(0),               //default constructor
+  Cache_LRU() : size_(0),               //default constructor
               n_sells_(0), 
               n_hits_(0), 
               is_ideal(true),
               cache_(),
               hash_ls() {};        
               
-  Hash_cl(size_t size, size_t num_sells, size_t hits = 0) : //explicit constructor
+  Cache_LRU(size_t size, size_t num_sells, size_t hits = 0) : //explicit constructor
               size_(size), 
               n_sells_(num_sells), 
               n_hits_(hits), 
@@ -44,7 +44,7 @@ class Hash_cl
               cache_(),
               hash_ls() {}; 
 
-  ~Hash_cl() {};                     //default destructor
+  ~Cache_LRU() {};                     //default destructor
   
   void resize(size_t new_size);
   auto find(int key);

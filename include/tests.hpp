@@ -4,7 +4,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "../include/CacheClass.hpp"
+#include "../include/CacheLRUClass.hpp"
 bool run_tests(void);
 
 #endif
