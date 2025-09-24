@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set (DEBUG_FLAGS  -DDEBUG -std=c++20 -ggdb3 -fsanitize=address,alignment -Wall -Wextra -Weffc++ 
+set (DEBUG_FLAGS  -DDEBUG -ggdb3 -fsanitize=address,alignment -Wall -Wextra -Weffc++ 
     -Wc++14-compat -Wmissing-declarations -Wcast-align -Wcast-qual -Wchar-subscripts 
     -Wconversion -Wctor-dtor-privacy -Wempty-body -Wfloat-equal -Wno-format-nonliteral 
     -Wformat-security -Wformat=2 -Winline -Wnon-virtual-dtor -Woverloaded-virtual -Wpacked 
@@ -17,28 +17,36 @@ set (DEBUG_FLAGS  -DDEBUG -std=c++20 -ggdb3 -fsanitize=address,alignment -Wall -
     -Wvariadic-macros -Wno-missing-field-initializers -Wno-narrowing -Wno-old-style-cast -Wno-varargs 
     -Wno-unused-parameter -fcheck-new -fsized-deallocation -fstack-protector -fstrict-overflow -fPIC -fPIE 
     -fno-omit-frame-pointer -fPIE -Werror=vla -Wno-write-strings)
-set (RELEASE_FLAGS -std=c++20 )
+set (RELEASE_FLAGS -O2)
 
-find_program(IWYU_PATH NAMES include-what-you-use iwyu)
-file(GLOB SOURCES "src/*.cpp" "src/tests/*.cpp")
 file(GLOB HEADERS "include/*.hpp" "include/*.h")
+file(GLOB MAIN_LRU_SOURCES "src/LRU/*.cpp" "src/tests/*.cpp")
+file(GLOB MAIN_OPT_SOURCES "src/OPT/*.cpp")
 
-add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
+add_executable(Cache_LRU ${MAIN_LRU_SOURCES}  ${HEADERS})
+add_executable(Cache_OPT  ${MAIN_OPT_SOURCES} ${HEADERS})
 
-target_include_directories(${PROJECT_NAME}
+target_include_directories(Cache_LRU 
     PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
         ${CMAKE_CURRENT_SOURCE_DIR}/src
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-target_compile_options (${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:${DEBUG_FLAGS}>)
-target_compile_options (${PROJECT_NAME} PRIVATE $<$<CONFIG:Release>:${RELEASE_FLAGS}>)
+target_include_directories(Cache_OPT 
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
-target_link_options (${PROJECT_NAME} PRIVATE $<$<CONFIG:Debug>:${DEBUG_FLAGS}>)
-target_link_options (${PROJECT_NAME} PRIVATE $<$<CONFIG:Release>:${RELEASE_FLAGS}>)
+foreach (target Cache_LRU Cache_OPT)
+    target_compile_options (${target}  PRIVATE $<$<CONFIG:Debug>:${DEBUG_FLAGS}>)
+    target_compile_options (${target}  PRIVATE $<$<CONFIG:Release>:${RELEASE_FLAGS}>)
 
+    target_link_options (${target}  PRIVATE $<$<CONFIG:Debug>:${DEBUG_FLAGS}>)
+    target_link_options (${target} PRIVATE $<$<CONFIG:Release>:${RELEASE_FLAGS}>)
+endforeach()
 #cmake -S ./ -B build/Release -DCMAKE_BUILD_TYPE=Release
 #cmake --build build/Release
 #./build/Release/MyHash

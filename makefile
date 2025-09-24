@@ -3,11 +3,16 @@
 Release:
 	cmake -S ./ -B build/Release -DCMAKE_BUILD_TYPE=Release
 	cmake --build build/Release
-r_run:
-	./build/Release/MyCache 
 
 Debug:
 	cmake -S ./ -B build/Debug -DCMAKE_BUILD_TYPE=Debug 
 	cmake --build build/Debug 
-d_run:
-	./build/Debug/MyCache
+
+run_lru:
+	./build/Release/Cache_LRU
+
+run_opt:
+	./build/Release/Cache_OPT
+
+test_lru:
+	./build/Debug/Cache_LRU

@@ -1,19 +1,25 @@
 # Cache
-In order to download, compile and run the programm:
+In order to download, compile and run the LRU_cache:
 ```
 git clone https://github.com/aywert/Cache
 cd Cache
 make Release
-make r_run
+make run_lru
 ```
 For the further use just run:
 
 ```
-make r_run
+make run_lru
 ```
-
 For running tests:
 ```
 make Debug
-make d_run
+make test_lru
 ```
+
+In order to run the OPT_cache:
+```
+make run_opt
+```
+
+
