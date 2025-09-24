@@ -1,6 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
+#include <list>
 
 struct CacheLine
 {
@@ -18,7 +19,9 @@ class Cache_OPT
   std::vector<int> vector_;     
   
   //std::unordered_map<int, LstIt> hash_table; // using hashtable for saving iterators isterad of numbers itself 
-  
+  std::list<CacheLine> cache_;
+  using LstIt = typename std::list<CacheLine>::iterator;
+  std::unordered_map<int, LstIt> hash_table;
   
   public:          
   Cache_OPT(size_t size, size_t num_sells, size_t hits = 0) : //explicit constructor
@@ -30,7 +33,9 @@ class Cache_OPT
             
   ~Cache_OPT() {};                     //default destructor
 
-
+  bool check_cache(int key);
   void get_vector_stdin(size_t arg_n);
   void dump_vector(void);
+  bool is_full(void) { return hash_table.size() == size_; };
+  int select_key_func(void);
 };
