@@ -33,7 +33,7 @@ int main(void)
   for (size_t i = 0; i < N_elem; i++)
   {
     cin >> buf;
-    Cache.check_hash(buf);
+    Cache.check_cache(buf);
     //Idial_Hash.check_hash(buf);
   }
 

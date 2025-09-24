@@ -50,7 +50,7 @@ class Cache_LRU
   auto find(int key);
   size_t get_size(void) const ;
   bool is_full(void) {return size_ == hash_ls.size() ? true : false;}
-  bool check_hash(int key);
+  bool check_cache(int key);
   size_t get_hits(void) const;
 
 };

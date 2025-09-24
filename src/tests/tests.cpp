@@ -30,7 +30,7 @@ bool run_tests(void)
     for (size_t i = 0; i < N_elem; i++)
     {
       in >> buf;
-      Cache.check_hash(buf);
+      Cache.check_cache(buf);
     }
 
     in >> buf; //take the additional number in the sequence which is the actual numbers of hits

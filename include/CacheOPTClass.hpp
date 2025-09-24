@@ -2,8 +2,6 @@
 #include <unordered_map>
 #include <vector>
 
-typedef int data_t; // using data_t = int;
-
 struct CacheLine
 {
   int key;
@@ -17,7 +15,7 @@ class Cache_OPT
   size_t n_sells_;
   size_t n_hits_;
 
-  std::vector<int> vector;     
+  std::vector<int> vector_;     
   
   //std::unordered_map<int, LstIt> hash_table; // using hashtable for saving iterators isterad of numbers itself 
   
@@ -26,14 +24,13 @@ class Cache_OPT
   Cache_OPT(size_t size, size_t num_sells, size_t hits = 0) : //explicit constructor
               size_(size), 
               n_sells_(num_sells), 
-              n_hits_(hits) {}; 
+              n_hits_(hits), 
+              vector_() {};
               //hash_table() 
             
-
-  int get_vector_stdin(void)
-  {
-
-  }
-
   ~Cache_OPT() {};                     //default destructor
+
+
+  void get_vector_stdin(size_t arg_n);
+  void dump_vector(void);
 };

@@ -11,7 +11,7 @@ auto Cache_LRU::find(int key)
   return hash_ls.find(key);
 }
 
-bool Cache_LRU::check_hash(int key)
+bool Cache_LRU::check_cache(int key)
 {
   auto it = hash_ls.find(key);
 
