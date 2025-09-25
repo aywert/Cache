@@ -28,7 +28,9 @@ class Cache_OPT
               size_(size), 
               n_sells_(num_sells), 
               n_hits_(hits),
-              pos_in_vector_(-1), 
+              pos_in_vector_(0), 
+              cache_(),
+              hash_table(),
               vector_() {};
               //hash_table() 
             

@@ -20,11 +20,12 @@ void Cache_OPT::get_vector_stdin(size_t arg_n)
 
 bool Cache_OPT::check_cache(int key)
 {
-  pos_in_vector_++;
+  
   auto it = hash_table.find(key);
 
   if (it != hash_table.end()) { //if hit - don`t do anything
     n_hits_++;
+    pos_in_vector_++;
     return true;
   } 
 
@@ -34,13 +35,10 @@ bool Cache_OPT::check_cache(int key)
   }
 
   else {
-    //std::cout << pos_in_vector_ << " selected: " << select_key_func() << "\n";
-    int del_key = select_key_func();   //add select function for determening whooch element to erase
-    if (del_key < 0) return false; // checking whether del_key was not selected
+    int del_key = select_key_func(); 
+    if (del_key < 0) {pos_in_vector_++; return false;} // checking whether del_key was not selected
 
     auto del_it = hash_table.find(del_key);
-    
-    printf("del key = %d\n ----------------------\n", del_key);
 
     if (del_it != hash_table.end())
     {
@@ -51,7 +49,7 @@ bool Cache_OPT::check_cache(int key)
       hash_table.insert({key, cache_.begin()});
     }
   }
-
+  pos_in_vector_++;
   return false;
 }
 
@@ -60,10 +58,11 @@ int Cache_OPT::select_key_func()
   bool is_selected = false;
   auto begin_it = cache_.begin();
   size_t furthest = 0;
-  for (auto it = cache_.begin(); std::distance(begin_it, it) < size_ ; it++)
+
+  for (auto it = cache_.begin(); (size_t)std::distance(begin_it, it) < size_ ; it++)
   {
     printf("iter key: %d\n", it->key);
-    for (int i = pos_in_vector_ + 1; i < n_sells_; i++)
+    for (size_t i = pos_in_vector_ + 1; i < n_sells_; i++)
     {
       if (vector_[i] == it->key)
       {
@@ -74,9 +73,8 @@ int Cache_OPT::select_key_func()
     } 
   }
 
-  for (int i = pos_in_vector_ + 1; i < n_sells_; i++)
+  for (size_t i = pos_in_vector_ + 1; i < n_sells_; i++)
   {
-    
     if (vector_[i] == vector_[pos_in_vector_])
     {
       is_selected = true; // entering if means that there is at least one number with same value
@@ -85,8 +83,6 @@ int Cache_OPT::select_key_func()
       break;
     }
   }
-
-  printf("-------------------\n");
 
   return is_selected ? vector_[furthest+pos_in_vector_] : -1;
 }

@@ -16,7 +16,7 @@ int main(void)
   Cache.get_vector_stdin(N_elem);
   Cache.dump_vector();
 
-  for (int i = 0; i < N_elem; i++)
+  for (size_t i = 0; i < N_elem; i++)
     Cache.check_cache(Cache.vector_[i]);
 
   std::cout << "Idial Cache: "<<Cache.get_hits() << "\n";
