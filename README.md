@@ -11,7 +11,7 @@ For the further use just run:
 ```
 make run_lru
 ```
-For running tests:
+For running tests of LRU cache:
 ```
 make Debug
 make test_lru
@@ -20,6 +20,11 @@ make test_lru
 In order to run the OPT_cache:
 ```
 make run_opt
+```
+For running tests of LRU cache:
+```
+make Debug
+make test_opt
 ```
 
 
