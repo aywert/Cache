@@ -5,7 +5,7 @@ bool run_tests_OPT(void)
   std::ifstream in;
   bool run = true;
 
-  in.open("./src/tests/tests.txt");
+  in.open("./src/tests/tests_OPT.txt");
 
   if (!in.is_open()) 
     {
@@ -26,6 +26,9 @@ bool run_tests_OPT(void)
     class Cache_OPT Cache = Cache_OPT(cache_size, N_elem);
 
     Cache.get_vector(N_elem, in);
+
+    for (size_t i = 0; i < N_elem; i++)
+    Cache.check_cache(Cache.vector_[i]);
 
     int buf;
     in >> buf; //take the additional number in the sequence which is the actual numbers of hits

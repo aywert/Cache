@@ -5,8 +5,7 @@ bool run_tests_LRU(void)
   std::ifstream in;
   bool run = true;
 
-  in.open("./src/tests/tests.txt");
-
+  in.open("./src/tests/tests_LRU.txt");
 
   if (!in.is_open()) 
     {

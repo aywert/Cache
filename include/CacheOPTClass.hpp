@@ -35,7 +35,7 @@ class Cache_OPT
     hash_table(),
     vector_() {};
             
-  ~Cache_OPT() {};                     //default destructor
+  ~Cache_OPT() {}; //default destructor
 
   bool check_cache(int key);
   void get_vector(size_t arg_n, std::istream& input);

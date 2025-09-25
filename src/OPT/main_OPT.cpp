@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../include/CacheOPTClass.hpp"
+#include "../include/tests.hpp"
 
 int main(void)
 {
