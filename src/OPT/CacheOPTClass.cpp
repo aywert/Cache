@@ -36,15 +36,17 @@ bool Cache_OPT::check_cache(int key)
   else {
     //std::cout << pos_in_vector_ << " selected: " << select_key_func() << "\n";
     int del_key = select_key_func();   //add select function for determening whooch element to erase
-    auto del_it = hash_table.find(del_key);
+    if (del_key < 0) return false; // checking whether del_key was not selected
 
-    printf("del key = %d\n", del_key);
+    auto del_it = hash_table.find(del_key);
+    
+    printf("del key = %d\n ----------------------\n", del_key);
 
     if (del_it != hash_table.end())
     {
-      //std::cout << "i am here\n";
+      std::cout << "i am here\n";
       cache_.erase(del_it->second); 
-      hash_table.erase(del_it);         //deleting itearator with that key from Hashtable
+      hash_table.erase(del_it);   
       cache_.push_front(CacheLine{key, key});
       hash_table.insert({key, cache_.begin()});
     }
@@ -55,17 +57,36 @@ bool Cache_OPT::check_cache(int key)
 
 int Cache_OPT::select_key_func()
 {
+  bool is_selected = false;
   auto begin_it = cache_.begin();
   size_t furthest = 0;
-  for (auto it = cache_.begin(); std::distance(begin_it, it) < size_; it++)
+  for (auto it = cache_.begin(); std::distance(begin_it, it) < size_ ; it++)
   {
-    for (int i = pos_in_vector_; i < n_sells_; i++)
+    printf("iter key: %d\n", it->key);
+    for (int i = pos_in_vector_ + 1; i < n_sells_; i++)
     {
-      //std::cout << vector_[i] << " "; 
-      if (vector_[i] == it->key && (i - pos_in_vector_) >= furthest)
-        furthest = i - pos_in_vector_;
+      if (vector_[i] == it->key)
+      {
+        if ((i - pos_in_vector_) >= furthest)
+          furthest = i - pos_in_vector_;
+        break;
+      }
+    } 
+  }
+
+  for (int i = pos_in_vector_ + 1; i < n_sells_; i++)
+  {
+    
+    if (vector_[i] == vector_[pos_in_vector_])
+    {
+      is_selected = true; // entering if means that there is at least one number with same value
+      if ((i - pos_in_vector_) >= furthest)
+        is_selected = false;
+      break;
     }
   }
-    //std::cout << "key: "<< it->key << " data:" << it->data << "\n";
-  return vector_[furthest]; // yet to be made
+
+  printf("-------------------\n");
+
+  return is_selected ? vector_[furthest+pos_in_vector_] : -1;
 }
