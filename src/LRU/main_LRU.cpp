@@ -8,7 +8,7 @@ int main(void)
 
   #ifdef DEBUG
     std::cout << "DEBUG tests initialized.\n";
-    if (run_tests())
+    if (run_tests_LRU())
       std::cout << "Tests completed\n";
     else
     {

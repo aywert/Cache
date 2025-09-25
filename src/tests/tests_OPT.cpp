@@ -1,12 +1,11 @@
 #include "../include/tests.hpp"
 
-bool run_tests_LRU(void)
+bool run_tests_OPT(void)
 {
   std::ifstream in;
   bool run = true;
 
   in.open("./src/tests/tests.txt");
-
 
   if (!in.is_open()) 
     {
@@ -24,16 +23,13 @@ bool run_tests_LRU(void)
     in >> cache_size >> N_elem;
 
     //std::cout << "cache_size: " << cache_size << "\n" << "Num_of_elem: "<< N_elem << "\n";
-    class Cache_LRU Cache = Cache_LRU(cache_size, N_elem);
+    class Cache_OPT Cache = Cache_OPT(cache_size, N_elem);
+
+    Cache.get_vector(N_elem, in);
 
     int buf;
-    for (size_t i = 0; i < N_elem; i++)
-    {
-      in >> buf;
-      Cache.check_cache(buf);
-    }
-
     in >> buf; //take the additional number in the sequence which is the actual numbers of hits
+    
     if(Cache.get_hits() == size_t(buf))
       std::cout << "Test[" << iter << "] | passed\n";
     else

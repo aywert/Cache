@@ -5,6 +5,9 @@
 #include <fstream>
 #include <string>
 #include "../include/CacheLRUClass.hpp"
-bool run_tests(void);
+#include "../include/CacheOPTClass.hpp"
+
+bool run_tests_LRU(void);
+bool run_tests_OPT(void);
 
 #endif

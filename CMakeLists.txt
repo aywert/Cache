@@ -21,10 +21,10 @@ set (RELEASE_FLAGS -O2)
 
 file(GLOB HEADERS "include/*.hpp" "include/*.h")
 file(GLOB MAIN_LRU_SOURCES "src/LRU/*.cpp" "src/tests/*.cpp")
-file(GLOB MAIN_OPT_SOURCES "src/OPT/*.cpp")
+file(GLOB MAIN_OPT_SOURCES "src/OPT/*.cpp" "src/tests/*.cpp")
 
 add_executable(Cache_LRU ${MAIN_LRU_SOURCES}  ${HEADERS})
-add_executable(Cache_OPT  ${MAIN_OPT_SOURCES} ${HEADERS})
+add_executable(Cache_OPT ${MAIN_OPT_SOURCES} ${HEADERS})
 
 target_include_directories(Cache_LRU 
     PRIVATE

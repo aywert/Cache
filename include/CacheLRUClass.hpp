@@ -1,5 +1,5 @@
-#ifndef HASH_CLASS
-#define HASH_CLASS
+#ifndef CACHE_LRU_CLASS
+#define CACHE_LRU_CLASS
 
 #include <iostream>
 #include <unordered_map>
@@ -7,7 +7,7 @@
 
 typedef int data_t; // using data_t = int;
 
-struct CacheLine
+struct CacheLine_LRU
 {
   int key;
   int data;
@@ -22,9 +22,9 @@ class Cache_LRU
 
   bool is_ideal; //defines should it work like idial one or not
 
-  std::list<CacheLine> cache_;      
+  std::list<CacheLine_LRU> cache_;      
   
-  using LstIt = typename std::list<CacheLine>::iterator;
+  using LstIt = typename std::list<CacheLine_LRU>::iterator;
   std::unordered_map<int, LstIt> hash_ls; // using hashtable for saving iterators isterad of numbers itself 
   
   

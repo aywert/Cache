@@ -11,8 +11,11 @@ Debug:
 run_lru:
 	./build/Release/Cache_LRU
 
+test_lru:
+	./build/Debug/Cache_LRU
+
 run_opt:
 	./build/Release/Cache_OPT
 
-test_lru:
-	./build/Debug/Cache_LRU
+test_opt:
+	./build/Debug/Cache_OPT

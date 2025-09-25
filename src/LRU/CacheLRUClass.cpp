@@ -19,7 +19,7 @@ bool Cache_LRU::check_cache(int key)
     
     cache_.erase(it->second);
     hash_ls.erase(key);
-    cache_.push_front(CacheLine{key, key});
+    cache_.push_front(CacheLine_LRU{key, key});
     hash_ls.insert({key, cache_.begin()});
     
     n_hits_++;
@@ -27,14 +27,14 @@ bool Cache_LRU::check_cache(int key)
   } 
 
   if (is_ideal || !this->is_full()) {
-    cache_.push_front(CacheLine{key, key});
+    cache_.push_front(CacheLine_LRU{key, key});
     hash_ls.insert({key, cache_.begin()});
   }
 
   else {
     hash_ls.erase(cache_.back().key);         //deleting itearator with that key from Hashtable
     cache_.pop_back();                        //deleting last element of cache_
-    cache_.push_front(CacheLine{key, key});
+    cache_.push_front(CacheLine_LRU{key, key});
     hash_ls.insert({key, cache_.begin()});
   }
 

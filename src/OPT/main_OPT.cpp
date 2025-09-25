@@ -3,6 +3,17 @@
 
 int main(void)
 {
+  #ifdef DEBUG
+    std::cout << "DEBUG tests initialized.\n";
+    if (run_tests_OPT())
+      std::cout << "Tests completed\n";
+    else
+    {
+      std::cout << "Mistake occurede during tests\n";
+    }
+    return 0;
+  #endif
+
   using std::cin;
   using std::cout;
 
@@ -13,12 +24,11 @@ int main(void)
 
   class Cache_OPT Cache = Cache_OPT(cache_size, N_elem);  
 
-  Cache.get_vector_stdin(N_elem);
-  Cache.dump_vector();
+  Cache.get_vector(N_elem, std::cin);
 
   for (size_t i = 0; i < N_elem; i++)
     Cache.check_cache(Cache.vector_[i]);
 
-  std::cout << "Idial Cache: "<<Cache.get_hits() << "\n";
+  cout << "Idial Cache: "<<Cache.get_hits() << "\n";
   return 0;
 }
