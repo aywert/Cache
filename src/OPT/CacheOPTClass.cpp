@@ -44,7 +44,7 @@ bool Cache_OPT::check_cache(int key)
     auto del_it = hash_table.find(del_key);
 
     if (del_it != hash_table.end()) {
-      std::cout << "i am here\n";
+      //std::cout << "i am here\n";
       cache_.erase(del_it->second); 
       hash_table.erase(del_it);   
       cache_.push_front(CacheLine_OPT{key, key});
