@@ -7,11 +7,10 @@ bool run_tests_OPT(void)
 
   in.open("./src/tests/tests_OPT.txt");
 
-  if (!in.is_open()) 
-    {
-      std::cout << "Mistake in opening the file\n";
-      return false;
-    }
+  if (!in.is_open()) {
+    std::cout << "Mistake in opening the file\n";
+    return false;
+  }
   
   std::cout << "Proceding emplementings tests...\n";
 
@@ -20,25 +19,28 @@ bool run_tests_OPT(void)
     iter++;
     size_t cache_size;
     size_t N_elem;
+    size_t hits = 0;
     in >> cache_size >> N_elem;
 
     //std::cout << "cache_size: " << cache_size << "\n" << "Num_of_elem: "<< N_elem << "\n";
-    class Cache_OPT Cache = Cache_OPT(cache_size, N_elem);
+    class Cache_OPT<int, int> Cache(cache_size, N_elem);
 
     Cache.get_vector(N_elem, in);
 
-    for (size_t i = 0; i < N_elem; i++)
-    Cache.check_cache(Cache.vector_[i]);
+    for (size_t i = 0; i < N_elem; i++) {
+      if(Cache.check_cache(Cache.vector_[i]))
+        hits++;
+    }
 
     int buf;
     in >> buf; //take the additional number in the sequence which is the actual numbers of hits
     
-    if(Cache.get_hits() == size_t(buf))
+    if(hits == size_t(buf))
       std::cout << "Test[" << iter << "] | passed\n";
     else
     {
       std::cout << "Test[" << iter << "] | failed\n";
-      std::cout << "My Hits: " << Cache.get_hits() << "\n";
+      std::cout << "My Hits: " << hits << "\n";
       std::cout << "Actual Hits: " << buf << "\n";
     }
 

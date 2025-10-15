@@ -22,7 +22,7 @@ set (RELEASE_FLAGS -O2)
 file(GLOB LRU_HEADERS "include/CacheLRUClass.hpp" "tests.hpp")
 file(GLOB OPT_HEADERS "include/CacheOPTClass.hpp" "tests.hpp")
 file(GLOB MAIN_LRU_SOURCES "src/LRU/*.cpp" "src/tests/tests_LRU.cpp")
-file(GLOB MAIN_OPT_SOURCES "src/OPT/*.cpp" "src/tests/tests_OPT.cpp")
+file(GLOB MAIN_OPT_SOURCES "src/OPT/main_OPT.cpp" "src/tests/tests_OPT.cpp")
 
 add_executable(Cache_LRU ${MAIN_LRU_SOURCES}  ${LRU_HEADERS})
 add_executable(Cache_OPT ${MAIN_OPT_SOURCES} ${OPT_HEADERS})
